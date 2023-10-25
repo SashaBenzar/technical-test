@@ -1,95 +1,59 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client';
+import { useRef, useEffect } from 'react';
+import styles from './page.module.scss';
 
 export default function Home() {
+  const parentRef = useRef<HTMLDivElement | null>(null);
+  const stickyRef = useRef<HTMLDivElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    window.addEventListener('scroll', (e) => {
+      const parent = parentRef.current as HTMLDivElement;
+      const offsetTop = parent.offsetTop;
+      const scrollSelection = scrollRef.current as HTMLDivElement;
+      let percentage = ((window.scrollY - offsetTop) / window.innerHeight) * 100;
+      percentage = percentage < 0 ? 0 : percentage > 300 ? 300 : percentage;
+      scrollSelection.style.transform = `translate(${-percentage}vw, 0)`;
+    });
+
+    return () => {};
+  }, []);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <section id="about">
+        <div className={styles.about__container}>
+          <h1>About</h1>
+        </div>
+      </section>
+      <section id="team">
+        <div className={styles.team__container}>
+          <h1>Team</h1>
+        </div>
+      </section>
+      <div id="projects" className={styles.sticky_parent} ref={parentRef}>
+        <div className={styles.sticky} ref={stickyRef}>
+          <div className={styles.scroll_section} ref={scrollRef}>
+            <div className="project__container">
+              <h1>Project1</h1>
+            </div>
+
+            <div className="project__container">
+              <h1>Project2</h1>
+            </div>
+
+            <div className="project__container">
+              <h1>Project3</h1>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <section id="contact">
+        <div className={styles.contact__container}>
+          <h1>Contact</h1>
+        </div>
+      </section>
     </main>
-  )
+  );
 }

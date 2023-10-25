@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body,
+main {
+  width: 100%;
+  height: 100%;
+}
+
+section {
+  height: 100vh;
+  &:first-child {
+    height: 200vh;
+  }
+}
+
+[class*='__container'] {
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+}

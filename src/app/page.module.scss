@@ -1,0 +1,36 @@
+.about__container {
+  background: #86b279;
+}
+
+.team__container {
+  background: #fcb040;
+}
+
+.sticky_parent {
+  background: #00aeef;
+}
+
+.contact__container {
+  background: #c49a6c;
+}
+
+.sticky_parent {
+  height: 300vh;
+}
+
+.sticky {
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.scroll_section {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 300vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
