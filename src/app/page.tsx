@@ -3,9 +3,8 @@ import { useRef, useEffect } from 'react';
 import styles from './page.module.scss';
 
 export default function Home() {
-  const parentRef = useRef<HTMLDivElement | null>(null);
-  const stickyRef = useRef<HTMLDivElement | null>(null);
-  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const parentRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     window.addEventListener('scroll', (e) => {
@@ -33,7 +32,7 @@ export default function Home() {
         </div>
       </section>
       <div id="projects" className={styles.sticky_parent} ref={parentRef}>
-        <div className={styles.sticky} ref={stickyRef}>
+        <div className={styles.sticky}>
           <div className={styles.scroll_section} ref={scrollRef}>
             <div className="project__container">
               <h1>Project1</h1>
